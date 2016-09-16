@@ -14,7 +14,7 @@ How to use:
 
 Add to project with gradle
 
-compile 'no.teleplanglobe:eventadapter:0.9'
+compile 'no.nordli:eventadapter:0.9'
 
 Maven version might come later when milestones are reached.
 

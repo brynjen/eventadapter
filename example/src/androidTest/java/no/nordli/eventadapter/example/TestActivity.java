@@ -15,7 +15,7 @@ import junit.framework.Assert;
 @SuppressWarnings("rawtypes")
 public class TestActivity extends ActivityInstrumentationTestCase2 {
     private static final String ACTIVITY_NAME = "MainActivity";
-    private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "no.teleplanglobe.eventrecyclerview.example."+ACTIVITY_NAME;
+    private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "no.nordli.eventadapter.example."+ACTIVITY_NAME;
 
     private Solo solo;
     private static Class<?> launcherActivityClass;
