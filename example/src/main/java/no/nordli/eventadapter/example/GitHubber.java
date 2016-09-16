@@ -1,7 +1,7 @@
-package no.teleplanglobe.eventadapter.example;
+package no.nordli.eventadapter.example;
 
-import no.teleplanglobe.eventadapter.Event;
-import no.teleplanglobe.eventadapter.EventBus;
+import no.nordli.eventadapter.Event;
+import no.nordli.eventadapter.EventBus;
 
 /**
  * GitHubber

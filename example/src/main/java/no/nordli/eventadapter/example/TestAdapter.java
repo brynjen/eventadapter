@@ -1,4 +1,4 @@
-package no.teleplanglobe.eventadapter.example;
+package no.nordli.eventadapter.example;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import no.teleplanglobe.eventadapter.EventBasedList;
-import no.teleplanglobe.eventadapter.EventBasedRecyclerAdapter;
-import no.teleplanglobe.eventadapter.EventBasedViewHolder;
+import no.nordli.eventadapter.EventBasedList;
+import no.nordli.eventadapter.EventBasedRecyclerAdapter;
+import no.nordli.eventadapter.EventBasedViewHolder;
 
 /**
  * TestAdapter

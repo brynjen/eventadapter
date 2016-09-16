@@ -1,9 +1,10 @@
-package no.teleplanglobe.eventadapter;
+package no.nordli.eventadapter;
 
 import android.view.View;
 
 /**
- * Created by brynjenordli on 13/09/16.
+ * DummyViewHolder
+ * Created by Brynje Nordli on 13/09/16.
  */
 public class DummyViewHolder extends EventBasedViewHolder<DummyClass> {
     public DummyViewHolder(View itemView) {

@@ -1,7 +1,7 @@
-# Eventadapter
+# Event Adapter
 ================================
-An event-based recyclerAdapter using an eventBus to notify it of any changes in the datasource, letting the adapter show RecyclerViews nice animations (or you could add your own animations).
-The library is meant to work with lollipop (api lvl 21) or above, but is planned for a kitkat release later.
+An event-based recyclerAdapter using an eventBus to notify it of any changes in the data source, letting the adapter show RecyclerViews nice animations (or you could add your own animations).
+The library is meant to work with lollipop (api lvl 21) or above, but is planned for a Kitkat release later.
 
 EventAdapter:
 

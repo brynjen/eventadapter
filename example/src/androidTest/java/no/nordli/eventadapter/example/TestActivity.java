@@ -1,4 +1,4 @@
-package no.teleplanglobe.eventadapter.example;
+package no.nordli.eventadapter.example;
 
 import android.support.v7.widget.RecyclerView;
 import android.test.ActivityInstrumentationTestCase2;
@@ -6,9 +6,6 @@ import android.test.ActivityInstrumentationTestCase2;
 import com.robotium.solo.Solo;
 
 import junit.framework.Assert;
-
-import no.teleplanglobe.eventadapter.example.MainActivity;
-import no.teleplanglobe.eventadapter.example.TestAdapter;
 
 /**
  * TestActivity

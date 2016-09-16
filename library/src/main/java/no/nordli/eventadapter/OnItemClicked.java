@@ -1,4 +1,4 @@
-package no.teleplanglobe.eventadapter;
+package no.nordli.eventadapter;
 
 /**
  * OnItemClicked

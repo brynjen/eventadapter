@@ -1,4 +1,4 @@
-package no.teleplanglobe.eventadapter;
+package no.nordli.eventadapter;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * TestEventBasedList
