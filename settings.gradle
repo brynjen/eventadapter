@@ -1,1 +1,1 @@
-include ':example', ':eventrecyclerview'
+include ':example', ':library'
