@@ -2,7 +2,7 @@
 ================================
 
 An event-based recyclerAdapter using an eventBus to notify it of any changes in the data source, letting the adapter show RecyclerViews nice animations (or you could add your own animations).
-The library is meant to work with lollipop (api lvl 21) or above, but is planned for a Kitkat release later.
+The library is meant to work with Lollipop (api lvl 21) or above, but is planned for a Kitkat later.
 
 EventAdapter:
 
@@ -22,3 +22,20 @@ Maven version might come later when milestones are reached.
 Tutorial:
 
 This readme is being updated today, so stay frosty...
+
+License
+--------
+
+    Copyright 2016 Brynje Nordli
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.

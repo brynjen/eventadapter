@@ -20,7 +20,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
-        versionName '0.9'
+        versionName PUBLISH_VERSION
     }
     buildTypes {
         release {
@@ -51,7 +51,7 @@ install {
             packaging 'aar'
             groupId PUBLISH_GROUP_ID
             artifactId PUBLISH_ARTIFACT_ID
-            version '0.9'
+            version PUBLISH_VERSION
 
             licenses {
                 license {
@@ -82,7 +82,7 @@ bintray {
         repo = 'maven'
         name = PUBLISH_ARTIFACT_ID
         licenses = ['Apache-2.0']
-        user =
+        userOrg = 'bintray_user'
         vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
         version {
             name = PUBLISH_VERSION
