@@ -1,20 +1,26 @@
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+    id "com.github.dcendents.android-maven" version "1.5"
+}
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = "0.9"
+    PUBLISH_VERSION = '0.9'
+    PUBLISH_DESCRIPTION = 'Pre-release to test push'
 }
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
-        versionName "0.9"
+        versionName '0.9'
     }
     buildTypes {
         release {
@@ -33,4 +39,56 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'EventAdapter'
+            description 'An event-based recyclerAdapter using an eventBus to notify it of any changes in the datasource, letting the adapter show RecyclerViews nice animations (or you could add your own animations).'
+            url 'https://github.com/brynjen/eventadapter'
+            inceptionYear '2016'
+
+            packaging 'aar'
+            groupId PUBLISH_GROUP_ID
+            artifactId PUBLISH_ARTIFACT_ID
+            version '0.9'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'https://github.com/brynjen/eventadapter.git'
+                url 'https://github.com/brynjen/eventadapter'
+
+            }
+            developers {
+                developer {
+                    name 'Brynje Nordli'
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('bintrayUser')
+    key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('bintrayKey')
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = PUBLISH_ARTIFACT_ID
+        licenses = ['Apache-2.0']
+        user =
+        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        version {
+            name = PUBLISH_VERSION
+            desc = PUBLISH_DESCRIPTION
+            vcsTag = '0.1'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
