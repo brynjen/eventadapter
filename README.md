@@ -13,6 +13,8 @@ EventAdapter:
     
 How to use:
 
+Note that the project is awaiting response from jCenter and is not available with gradle/maven yet.
+
 Add to project with gradle
     
     compile 'no.nordli:eventadapter:0.9'
@@ -30,8 +32,16 @@ Tutorial:
 
 This readme is being updated today, so stay frosty...
 
+Build Metrics
+====================
+
+Working on the metrics with codecov.io and travis-ci.org. Not completely implemented yet.
+
+[![Build Status](https://travis-ci.org/brynjen/eventadapter.svg?branch=develop)](https://travis-ci.org/brynjen/eventadapter) 
+[![codecov.io](http://codecov.io/github/brynjen/eventadapter/coverage.svg?branch=develop)](http://codecov.io/github/brynjen/eventadapter?branch=develop)
+
 License
---------
+====================
 
     Copyright 2016 Brynje Nordli
 
