@@ -14,10 +14,17 @@ EventAdapter:
 How to use:
 
 Add to project with gradle
-note: Does not work atm, attempting to get jCenter/Maven Central to work with BinTray. 
-compile 'no.nordli:eventadapter:0.9'
+    
+    compile 'no.nordli:eventadapter:0.9'
 
-Maven version might come later when milestones are reached.
+Maven:
+
+    <dependency>
+      <groupId>no.nordli</groupId>
+      <artifactId>eventadapter</artifactId>
+      <version>0.9</version>
+      <type>pom</type>
+    </dependency>
 
 Tutorial:
 

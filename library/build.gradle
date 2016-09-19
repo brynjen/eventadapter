@@ -13,6 +13,9 @@ ext {
     PUBLISH_DESCRIPTION = 'Pre-release to test push'
 }
 
+version = PUBLISH_VERSION
+group = PUBLISH_GROUP_ID
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -38,7 +41,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
 }
-
 
 install {
     repositories.mavenInstaller {
@@ -79,10 +81,10 @@ bintray {
     key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('bintrayKey')
     configurations = ['archives']
     pkg {
-        repo = 'maven'
+        repo = 'no.nordli'
         name = PUBLISH_ARTIFACT_ID
         licenses = ['Apache-2.0']
-        userOrg = 'bintray_user'
+        userOrg = user
         vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
         version {
             name = PUBLISH_VERSION
