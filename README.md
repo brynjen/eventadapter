@@ -1,3 +1,8 @@
+[![GitHub license](https://img.shields.io/github/license/brynjen/eventadapter.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://travis-ci.org/brynjen/eventadapter.svg?branch=develop)](https://travis-ci.org/brynjen/eventadapter) 
+[![codecov.io](http://codecov.io/github/brynjen/eventadapter/coverage.svg?branch=develop)](http://codecov.io/github/brynjen/eventadapter?branch=develop)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.brynjen/eventadapter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22eventadapter%22)
+
 # Event Adapter
 ================================
 
