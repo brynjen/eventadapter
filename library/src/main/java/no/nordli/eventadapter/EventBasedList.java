@@ -17,17 +17,31 @@ public class EventBasedList<M> extends ArrayList<M> {
         this.topic = topic;
     }
 
+    /**
+     * add(int location, M object)
+     * This method performs a regular add to the arraylist, as well as sending an event to the given topic that it did so
+     * @param location index of object added
+     * @param object object added to list
+     */
     @Override
     public void add(int location, M object) {
         super.add(location, object);
         EventBus.getInstance().notifyListSizeChanged(topic);
     }
 
+    /**
+     * add(M object)
+     * This method performs a regular add to the arraylist, as well as sending an event to the given topic that it did so
+     * @param object object added to list
+     * @return
+     */
     @Override
     public boolean add(M object) {
-        super.add(object);
-        EventBus.getInstance().notifyListSizeChanged(topic);
-        return true;
+        boolean addResult = super.add(object);
+        if (addResult) { // Note add always returns true, but adding 'if' in case it is changed later down the line
+            EventBus.getInstance().notifyListSizeChanged(topic);
+        }
+        return addResult;
     }
 
     @Override
