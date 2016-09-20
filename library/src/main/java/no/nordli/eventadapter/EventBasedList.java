@@ -33,7 +33,7 @@ public class EventBasedList<M> extends ArrayList<M> {
      * add(M object)
      * This method performs a regular add to the arraylist, as well as sending an event to the given topic that it did so
      * @param object object added to list
-     * @return
+     * @return always returns true, at least until this changes in ArrayList
      */
     @Override
     public boolean add(M object) {

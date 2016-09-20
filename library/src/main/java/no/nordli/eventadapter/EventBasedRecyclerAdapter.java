@@ -77,7 +77,7 @@ public abstract class EventBasedRecyclerAdapter<M, V extends EventBasedViewHolde
     /**
      * getData()
      * This method must be implemented and return the actual data list, not the internal list the adapter uses.
-     * @return List<M>
+     * @return Returns the list of the current data stored
      */
     public abstract List<M> getData();
 

@@ -52,8 +52,8 @@ public class EventBus {
     /**
      * subscribe
      * Adds a subscriber with a given class/type. There are no way
-     * @param topic
-     * @param subscriber
+     * @param topic the topic you want to subscribe to - a unique string
+     * @param subscriber The subscriber that will receive events
      */
     @MainThread
     public void subscribe(@NonNull String topic, @NonNull EventSubscriber subscriber) {
@@ -95,6 +95,7 @@ public class EventBus {
      * notifyObjectChanged
      * Method for the EventBus to notify to all subscribers that a single row of a specific type has been changed (given the model's class).
      * Note that it will always post this on the main thread regardless of thread it is on.
+     * @param topic The topic you want to notify on
      * @param model The object that is changing its data
      */
     @MainThread
