@@ -11,10 +11,12 @@ ext {
     PUBLISH_ARTIFACT_ID = 'eventadapter'
     PUBLISH_VERSION = '0.9'
     PUBLISH_DESCRIPTION = 'Pre-release to test push'
+    GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
 
-version = PUBLISH_VERSION
 group = PUBLISH_GROUP_ID
+//rootProject.name = PUBLISH_ARTIFACT_ID
+version = PUBLISH_VERSION
 
 android {
     compileSdkVersion 23
@@ -54,12 +56,12 @@ install {
         pom.project {
             name 'EventAdapter'
             description 'An event-based recyclerAdapter using an eventBus to notify it of any changes in the datasource, letting the adapter show RecyclerViews nice animations (or you could add your own animations).'
-            url 'https://github.com/brynjen/eventadapter'
+            url GIT_REPO_URL
             inceptionYear '2016'
 
             packaging 'aar'
             groupId PUBLISH_GROUP_ID
-            artifactId 'library'
+            artifactId PUBLISH_ARTIFACT_ID
             version PUBLISH_VERSION
 
             licenses {
@@ -71,7 +73,7 @@ install {
             }
             scm {
                 connection 'https://github.com/brynjen/eventadapter.git'
-                url 'https://github.com/brynjen/eventadapter'
+                url GIT_REPO_URL
 
             }
             developers {
@@ -110,20 +112,22 @@ bintray {
     key = project.hasProperty('bintrayKey') ? project.property('bintrayKey') : System.getenv('bintrayKey')
     configurations = ['archives']
     pkg {
-        repo = 'no.nordli'
-        name = PUBLISH_ARTIFACT_ID
+        repo = PUBLISH_GROUP_ID //  Bintray repo, corresponding with groupId here
+        name = PUBLISH_ARTIFACT_ID // This is package name
+        desc = PUBLISH_DESCRIPTION
+        publicDownloadNumbers = true
         licenses = ['Apache-2.0']
         userOrg = user
         vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
-        version {
-            name = PUBLISH_VERSION
-            desc = PUBLISH_DESCRIPTION
-            vcsTag = '0.1'
-            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.1.3'] //'com.use.less:com.use.less.gradle:gradle-useless-plugin'
-        }
+        githubRepo = GIT_REPO_URL
+//        version {
+////            name = PUBLISH_ARTIFACT_ID // This is package name
+//            publish = false
+//            released = new Date()
+//            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.1.3'] //'com.use.less:com.use.less.gradle:gradle-useless-plugin'
+//        }
     }
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.1.3'//'2.4'
+task findConventions << {
+    println project.getConvention()
 }
