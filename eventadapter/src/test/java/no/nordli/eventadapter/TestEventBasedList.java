@@ -38,6 +38,11 @@ public class TestEventBasedList {
         return new EventSubscriber() {
             @Override
             public void objectChanged(Object source) {
+                if (eventMap.get("notifyObjectChanged") == null) {
+                    eventMap.put("notifyObjectChanged", 1);
+                } else {
+                    eventMap.put("notifyObjectChanged", eventMap.get("notifyObjectChanged")+1);
+                }
             }
             @Override
             public void listChanged() {
@@ -129,10 +134,10 @@ public class TestEventBasedList {
         DummyClass obj = new DummyClass();
         eventBasedList.set(0, obj);
 
-        Assert.assertEquals(1, eventMap.get("notifyListSizeChanged")==null?0:eventMap.get("notifyListSizeChanged"));
+        Assert.assertEquals(1, eventMap.get("notifyObjectChanged")==null?0:eventMap.get("notifyObjectChanged"));
 
         eventBasedList.set(0, new DummyClass());
 
-        Assert.assertEquals(2, eventMap.get("notifyListSizeChanged")==null?0:eventMap.get("notifyListSizeChanged"));
+        Assert.assertEquals(2, eventMap.get("notifyObjectChanged")==null?0:eventMap.get("notifyObjectChanged"));
     }
 }
