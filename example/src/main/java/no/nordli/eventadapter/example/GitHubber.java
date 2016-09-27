@@ -8,7 +8,7 @@ import no.nordli.eventadapter.EventBus;
  * Test class
  * Created by Brynje Nordli on 06/09/16.
  */
-public class GitHubber implements Comparable<GitHubber>, Event {
+class GitHubber implements Comparable<GitHubber>, Event {
     private String email;
     private Fanaticism githHubLevel;
 
@@ -23,38 +23,38 @@ public class GitHubber implements Comparable<GitHubber>, Event {
         EventBus.getInstance().notifyObjectChanged(GitHubber.class.getName(), this);
     }
 
-    public Fanaticism getRandomFanaticism() {
+    Fanaticism getRandomFanaticism() {
         return Fanaticism.values()[(int) Math.round((2*Math.random()))];
     }
 
-    public enum Fanaticism {
+    enum Fanaticism {
         Meh, Regular, Avid, MadMan
     }
 
-    public GitHubber(String email, Fanaticism fanaticism) {
+    GitHubber(String email, Fanaticism fanaticism) {
         this.email = email;
         this.githHubLevel = fanaticism;
     }
 
-    public void setFanaticism(Fanaticism fanaticism) {
+    void setFanaticism(Fanaticism fanaticism) {
         if (githHubLevel != fanaticism) {
             this.githHubLevel = fanaticism;
             notifyObjectChanged();
         }
     }
 
-    public void setEmail(String newEmail) {
+    void setEmail(String newEmail) {
         if (email != null && !email.equals(newEmail)) {
             email = newEmail;
             notifyObjectChanged();
         }
     }
 
-    public String email() {
+    String email() {
         return email;
     }
 
-    public Fanaticism githHubLevel() {
+    Fanaticism gitHubLevel() {
         return githHubLevel;
     }
 }

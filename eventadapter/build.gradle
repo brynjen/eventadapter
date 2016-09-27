@@ -9,8 +9,8 @@ apply plugin: 'maven-publish'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '0.9'
-    PUBLISH_DESCRIPTION = 'Pre-release to test push'
+    PUBLISH_VERSION = '1.0'
+    PUBLISH_DESCRIPTION = 'First 1.0 release'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
 
@@ -121,7 +121,6 @@ bintray {
         vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
         githubRepo = GIT_REPO_URL
         version {
-//            name = PUBLISH_ARTIFACT_ID // This is package name
             publish = true
             released = new Date()
             attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.2.0'] //'com.use.less:com.use.less.gradle:gradle-useless-plugin'

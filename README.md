@@ -18,24 +18,77 @@ EventAdapter:
     
 How to use:
 
-Note that the project is awaiting response from jCenter and is not available with gradle/maven yet.
-
 Add to project with gradle
     
-    compile 'no.nordli:eventadapter:0.9'
+    compile 'no.nordli:eventadapter:1.0'
 
 Maven:
 
     <dependency>
       <groupId>no.nordli</groupId>
       <artifactId>eventadapter</artifactId>
-      <version>0.9</version>
+      <version>1.0</version>
       <type>pom</type>
     </dependency>
 
 Tutorial:
 
-This readme is being updated today, so stay frosty...
+To use this library, make a container class for whichever object you want to display like so
+
+    class GitHubber implements Event {
+        private String email;
+
+        public GithHubber(String email) {
+            this.email = email;
+        }
+
+        @Override
+        public void notifyObjectChanged() {
+            EventBus.getInstance().notifyObjectChanged(GitHubber.class.getName(), this);
+        }
+    }
+Note: The "Event" interface is to give you the option to create a singular place to do the actual updating, while the important thing is to
+notify to the EventBus about the object changed with the correct topic (in this example I use the class name, but it can be any string).
+
+Next is to implement an EventBasedList and an EventBasedRecyclerAdapter. Note that they do not have to be in the same class.
+You can have the data in a manager class and so long as you access it correctly from the adapter there is no problem.
+
+    class MyAdapter extends EventBasedRecyclerAdapter<GitHubber, MyAdapter.ViewHolder> {
+        private EventBasedList<GitHubber> data = new EventBasedList<>(GitHubber.class.getName());
+        
+        @Override
+        public List<GitHubber> getData() {
+            return data;
+        }
+        
+        @Override
+        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.myrow, parent, false));
+        }
+        
+        @Override
+        public void onItemClicked(int row, GitHubber obj, MyAdapter.ViewHolder viewHolder) {
+            // Do something
+        }
+        
+        @Override
+        public boolean onItemLongClicked(int row, GitHubber obj, MyAdapter.ViewHolder viewHolder) {
+            return true; // If false, click event is not stopped causing a regular click event to fire
+        }
+        
+        class ViewHolder extends EventBasedViewHolder<GitHubber> {
+            private TextView emailTextView;
+            ViewHolder(View itemView) {
+                super(itemView);
+                emailTextView = (TextView)itemView.findViewById(R.id.my_text_view);
+            }
+            
+            @Override
+            protected void bind(GitHubber objectModel) {
+                // Bind the data from the objectModel to the components
+            }
+        }
+    }
 
 Build Metrics
 ====================

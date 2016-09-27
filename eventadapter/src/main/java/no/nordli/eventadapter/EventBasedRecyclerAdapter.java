@@ -139,7 +139,7 @@ public abstract class EventBasedRecyclerAdapter<M, V extends EventBasedViewHolde
         return result;
     }
 
-    protected void updateDataSet() {
+    private void updateDataSet() {
         List<M> oldEntries = new ArrayList<>(data);
         List<M> newEntries;
         if (filter != null) {
@@ -185,7 +185,6 @@ public abstract class EventBasedRecyclerAdapter<M, V extends EventBasedViewHolde
         return this.getAdapterData().get(position);
     }
 
-    @SuppressWarnings("all")
     public int indexOfObject(M entity) {
         return this.getAdapterData().indexOf(entity);
     }

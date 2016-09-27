@@ -16,8 +16,8 @@ import no.nordli.eventadapter.EventBasedViewHolder;
  *
  * Created by Brynje Nordli on 05/09/16.
  */
-public class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapter.ViewHolder> {
-    private List<GitHubber> data = new EventBasedList<>(GitHubber.class.getName());
+class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapter.ViewHolder> {
+    private EventBasedList<GitHubber> data = new EventBasedList<>(GitHubber.class.getName());
 
     @Override
     public List<GitHubber> getData() {
@@ -40,18 +40,22 @@ public class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapte
         return true;
     }
 
-    public void addObject(GitHubber gitHubber) {
-        data.add(gitHubber);
+    void addObject(GitHubber gitHubber) {
+        if (data.size() > 0) {
+            data.set(0, gitHubber);
+        } else {
+            data.add(gitHubber);
+        }
     }
 
-    public void removeObject(GitHubber gitHubber) {
+    void removeObject(GitHubber gitHubber) {
         data.remove(gitHubber);
     }
 
-    protected class ViewHolder extends EventBasedViewHolder<GitHubber> {
-        public TextView textView;
-        public TextView awesomeNessView;
-        public ViewHolder(View itemView) {
+    class ViewHolder extends EventBasedViewHolder<GitHubber> {
+        TextView textView;
+        TextView awesomeNessView;
+        ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView)itemView.findViewById(R.id.textView);
             awesomeNessView = (TextView)itemView.findViewById(R.id.awesomeness);
@@ -60,7 +64,7 @@ public class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapte
         @Override
         protected void bind(GitHubber objectModel) {
             textView.setText(objectModel.email());
-            String builder = "Level:" + objectModel.githHubLevel().toString();
+            String builder = "Level:" + objectModel.gitHubLevel().toString();
             awesomeNessView.setText(builder);
         }
     }
