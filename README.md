@@ -21,8 +21,10 @@ How to use:
 Add to project with gradle
     
     compile 'no.nordli:eventadapter:1.0'
+    
+Note the library is in jCenter, so use that as a repository.
 
-Maven:
+Maven: Not in maven central yet, but will soon.
 
     <dependency>
       <groupId>no.nordli</groupId>
@@ -50,7 +52,7 @@ To use this library, make a container class for whichever object you want to dis
 Note: The "Event" interface is to give you the option to create a singular place to do the actual updating, while the important thing is to
 notify to the EventBus about the object changed with the correct topic (in this example I use the class name, but it can be any string).
 
-Next is to implement an EventBasedList and an EventBasedRecyclerAdapter. Note that they do not have to be in the same class.
+Next is to implement an [EventBasedList](https://github.com/brynjen/eventadapter/blob/master/eventadapter/src/main/java/no/nordli/eventadapter/EventBasedList.java)EventBasedList and an EventBasedRecyclerAdapter. Note that they do not have to be in the same class.
 You can have the data in a manager class and so long as you access it correctly from the adapter there is no problem.
 
     class MyAdapter extends EventBasedRecyclerAdapter<GitHubber, MyAdapter.ViewHolder> {
