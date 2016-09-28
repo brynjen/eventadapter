@@ -15,16 +15,16 @@ EventAdapter:
 * Can handle any kind of object
 * Animates default animations when data is updated but can be expanded upon
 * Minimizes data storage and handling
-    
+
 How to use:
 
 Add to project with gradle
-    
+
     compile 'no.nordli:eventadapter:1.0'
-    
+
 Note the library is in jCenter, so use that as a repository.
 
-Maven: Not in maven central yet, but will soon.
+Maven: Not in maven central yet, but it will be soon.
 
     <dependency>
       <groupId>no.nordli</groupId>
@@ -40,8 +40,16 @@ To use this library, make a container class for whichever object you want to dis
     class GitHubber implements Event {
         private String email;
 
-        public GithHubber(String email) {
+        public GitHubber(String email) {
             this.email = email;
+        }
+        
+        // Note I'm ignoring checking for null and the like, but any class should always assert correct values
+        public void setEmail(String newEmail) {
+            if (!newEmail.isEqualTo(email)) {
+                this.email = newEmail;
+                notifyObjectChanged();
+            }
         }
 
         @Override
@@ -49,7 +57,26 @@ To use this library, make a container class for whichever object you want to dis
             EventBus.getInstance().notifyObjectChanged(GitHubber.class.getName(), this);
         }
     }
-Note: The "Event" interface is to give you the option to create a singular place to do the actual updating, while the important thing is to
+
+Alternatively, the class can be made like this:
+
+    class GitHubber extends EventObject {
+        private String email;
+        
+        public GitHubber(String email, String topic) {
+            super(topic);
+            this.email = email;
+        }
+
+        public void setEmail(String newEmail) {
+            if (!newEmail.isEqualTo(email)) {
+                this.email = newEmail;
+                notifyObjectChanged();
+            }
+        }
+    }
+
+Note: The "[Event](https://github.com/brynjen/eventadapter/blob/master/eventadapter/src/main/java/no/nordli/eventadapter/Event.java)" interface is to give you the option to create a singular place to do the actual updating, while the important thing is to
 notify to the EventBus about the object changed with the correct topic (in this example I use the class name, but it can be any string).
 
 Next is to implement an [EventBasedList](https://github.com/brynjen/eventadapter/blob/master/eventadapter/src/main/java/no/nordli/eventadapter/EventBasedList.java) and an [EventBasedRecyclerAdapter](https://github.com/brynjen/eventadapter/blob/master/eventadapter/src/main/java/no/nordli/eventadapter/EventBasedRecyclerAdapter.java). Note that they do not have to be in the same class.
@@ -91,14 +118,6 @@ You can have the data in a manager class and so long as you access it correctly 
             }
         }
     }
-
-Build Metrics
-====================
-
-Working on the metrics with codecov.io and travis-ci.org. Not completely implemented yet.
-
-[![Build Status](https://travis-ci.org/brynjen/eventadapter.svg?branch=develop)](https://travis-ci.org/brynjen/eventadapter) 
-[![codecov.io](http://codecov.io/github/brynjen/eventadapter/coverage.svg?branch=develop)](http://codecov.io/github/brynjen/eventadapter?branch=develop)
 
 License
 ====================
