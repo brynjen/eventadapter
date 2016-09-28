@@ -5,12 +5,14 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'jacoco-android'
+apply plugin: 'jacoco'
+//apply plugin: 'jacoco-android'
 
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
     PUBLISH_VERSION = '1.0'
+    PUBLISH_VERSION_CODE = 1
     PUBLISH_DESCRIPTION = 'First 1.0 release'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
@@ -19,27 +21,58 @@ group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
 android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 1
+        versionCode PUBLISH_VERSION_CODE
         versionName PUBLISH_VERSION
-        testHandleProfiling true
-        testFunctionalTest true
+        testHandleProfiling false
+        testFunctionalTest false
     }
     buildTypes {
         debug {
             testCoverageEnabled true
         }
         release {
-            testCoverageEnabled true
+            testCoverageEnabled false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    jacocoClasspath = configurations['androidJacocoAnt']
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = files(["${buildDir}/jacoco/testDebugUnitTest.exec",
+                           "${buildDir}/outputs/code-coverage/connected/coverage.ec"
+    ])
+}
+
+//jacoco {
+//    toolVersion = "0.7.6.201602180812"
+//}
 
 configurations {
     javadocDeps2
@@ -55,7 +88,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
 
     javadocDeps 'com.android.support:support-annotations:23.4.0'
-    javadocDeps2 'com.android.support:recyclerview-v7:23.4.0'//''com.android.support:widget-v7:23.4.0'
+    javadocDeps2 'com.android.support:recyclerview-v7:23.4.0'
 }
 
 install {
@@ -79,7 +112,7 @@ install {
                 }
             }
             scm {
-                connection GIT_REPO_URL+'.git'//'https://github.com/brynjen/eventadapter.git'
+                connection GIT_REPO_URL + '.git'
                 url GIT_REPO_URL
 
             }
@@ -130,7 +163,7 @@ bintray {
         version {
             publish = true
             released = new Date()
-            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.2.0'] //'com.use.less:com.use.less.gradle:gradle-useless-plugin'
+            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.2.0']
         }
     }
 }
