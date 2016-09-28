@@ -5,6 +5,7 @@ plugins {
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'jacoco-android'
 
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
@@ -25,9 +26,15 @@ android {
         targetSdkVersion 21
         versionCode 1
         versionName PUBLISH_VERSION
+        testHandleProfiling true
+        testFunctionalTest true
     }
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
+            testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
