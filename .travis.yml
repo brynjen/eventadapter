@@ -14,7 +14,7 @@ android:
   - extra-android-support
   - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 script:
-  - ./gradlew build clean createDebugCoverageReport jacocoTestReport #eventadapter:jacocoTestReport #eventadapter:assembleAndroidTest
+  - ./gradlew build clean eventadapter:createDebugCoverageReport eventadapter:jacocoTestReport #eventadapter:jacocoTestReport #eventadapter:assembleAndroidTest
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
