@@ -1,10 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="no.nordli.eventadapter">
 
     <application android:allowBackup="true"
         android:label="@string/app_name"
+        tools:node="remove"
         android:supportsRtl="true">
-
     </application>
 
 </manifest>

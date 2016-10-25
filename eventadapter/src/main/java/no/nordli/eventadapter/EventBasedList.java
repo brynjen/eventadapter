@@ -133,9 +133,9 @@ public class EventBasedList<M> extends ArrayList<M> {
     @Override
     public M set(int location, M object) {
         M obj = super.set(location, object);
-        Log.i(tag, "Object setted:"+location+", "+obj);
+        Log.i(tag, "Object setted:"+location+", "+object);
         if (obj != null) {
-            EventBus.getInstance().notifyObjectChanged(topic, obj);
+            EventBus.getInstance().notifyObjectChanged(topic, object);
         }
         return obj;
     }
