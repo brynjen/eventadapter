@@ -1,6 +1,7 @@
 package no.nordli.eventadapter;
 
-import android.support.annotation.MainThread;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import java.util.HashMap;
@@ -15,9 +16,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 public class EventBus {
     private final static HashMap<String, Set<EventSubscriber>> subscribersPerTopic = new HashMap<>();
+    private Handler handler = new Handler(Looper.getMainLooper());
     private static EventBus instance = null;
 
-    @MainThread
     public static EventBus getInstance() {
         if (instance == null) {
             synchronized (EventBus.class) {
@@ -33,7 +34,6 @@ public class EventBus {
      * @param topic The topic you want to find subscribers of
      * @return The set with listeners
      */
-    @MainThread
     protected Set<EventSubscriber> subscribers(@NonNull String topic) {
         Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
         if (subscribers == null) return new HashSet<>();
@@ -44,7 +44,6 @@ public class EventBus {
      * removeAllSubscribers
      * Test method for manually clearing all subscribers
      */
-    @MainThread
     protected void removeAllSubscribers() {
         subscribersPerTopic.clear();
     }
@@ -55,7 +54,6 @@ public class EventBus {
      * @param topic the topic you want to subscribe to - a unique string
      * @param subscriber The subscriber that will receive events
      */
-    @MainThread
     public void subscribe(@NonNull String topic, @NonNull EventSubscriber subscriber) {
         Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
         if (subscribers == null) {
@@ -71,9 +69,8 @@ public class EventBus {
      * @param topic The topic you want to unSubscribe from
      * @param subscriber The subscriber you want to remove the class type subscription from
      */
-    @MainThread
-    public void unSubscribe(@NonNull String topic, @NonNull EventSubscriber subscriber) {
-        Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
+    public void unSubscribe(@NonNull final String topic, @NonNull EventSubscriber subscriber) {
+        final Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
         if (subscribers == null) return;
         subscribers.remove(subscriber);
         subscribersPerTopic.put(topic, subscribers);
@@ -84,11 +81,15 @@ public class EventBus {
      * Removes all topic subscriptions from a given subscriber
      * @param subscriber The subscriber you want to remove all events from
      */
-    @MainThread
-    public void unSubscribeAll(@NonNull EventSubscriber subscriber) {
-        for (Set<EventSubscriber> subscribers : subscribersPerTopic.values()) {
-            subscribers.remove(subscriber);
-        }
+    public void unSubscribeAll(@NonNull final EventSubscriber subscriber) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (Set<EventSubscriber> subscribers : subscribersPerTopic.values()) {
+                    subscribers.remove(subscriber);
+                }
+            }
+        });
     }
 
     /**
@@ -98,13 +99,17 @@ public class EventBus {
      * @param topic The topic you want to notify on
      * @param model The object that is changing its data
      */
-    @MainThread
     public void notifyObjectChanged(String topic, @NonNull final Object model) {
-        Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
+        final Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
         if (subscribers == null) return;
-        for (EventSubscriber subscriber : subscribers) {
-            subscriber.objectChanged(model);
-        }
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (EventSubscriber subscriber : subscribers) {
+                    subscriber.objectChanged(model);
+                }
+            }
+        });
     }
 
     /**
@@ -113,12 +118,16 @@ public class EventBus {
      * Note that it will always post this on the main thread regardless of thread it is on.
      * @param topic The topic that is changing rows
      */
-    @MainThread
     public void notifyListSizeChanged(String topic) {
-        Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
+        final Set<EventSubscriber> subscribers = subscribersPerTopic.get(topic);
         if (subscribers == null) return;
-        for (EventSubscriber subscriber : subscribers) {
-            subscriber.listChanged();
-        }
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (EventSubscriber subscriber : subscribers) {
+                    subscriber.listChanged();
+                }
+            }
+        });
     }
 }
