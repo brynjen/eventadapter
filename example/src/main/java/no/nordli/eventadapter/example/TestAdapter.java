@@ -13,7 +13,7 @@ import no.nordli.eventadapter.EventBasedViewHolder;
 
 /**
  * TestAdapter
- *
+ * <p>
  * Created by Brynje Nordli on 05/09/16.
  */
 class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapter.ViewHolder> {
@@ -41,11 +41,7 @@ class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapter.ViewH
     }
 
     void addObject(GitHubber gitHubber) {
-        if (data.size() > 0) {
-            data.set(0, gitHubber);
-        } else {
-            data.add(gitHubber);
-        }
+        data.add(gitHubber);
     }
 
     void removeObject(GitHubber gitHubber) {
@@ -55,10 +51,11 @@ class TestAdapter extends EventBasedRecyclerAdapter<GitHubber, TestAdapter.ViewH
     class ViewHolder extends EventBasedViewHolder<GitHubber> {
         TextView textView;
         TextView awesomeNessView;
+
         ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView)itemView.findViewById(R.id.textView);
-            awesomeNessView = (TextView)itemView.findViewById(R.id.awesomeness);
+            textView = (TextView) itemView.findViewById(R.id.textView);
+            awesomeNessView = (TextView) itemView.findViewById(R.id.awesomeness);
         }
 
         @Override

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * EventBasedRecyclerAdapter
  * Used as a container for any data adapter you want to display
- * Created by Brynje Norldi, Teleplan Globe AS on 05/09/16.
+ * Created by Brynje Nordli, Teleplan Globe AS on 05/09/16.
  */
 public abstract class EventBasedRecyclerAdapter<M, V extends EventBasedViewHolder<M>> extends RecyclerView.Adapter<V> implements EventSubscriber, OnItemClicked<M,V> {
     protected List<M> data = new ArrayList<>();

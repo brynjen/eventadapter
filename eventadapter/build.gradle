@@ -21,13 +21,6 @@ group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
 android {
-    testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
-        }
-    }
     compileSdkVersion 23
     buildToolsVersion '24.0.2'
     defaultConfig {
@@ -35,23 +28,18 @@ android {
         targetSdkVersion 21
         versionCode PUBLISH_VERSION_CODE
         versionName PUBLISH_VERSION
-        testHandleProfiling false
-        testFunctionalTest false
+        testHandleProfiling true
+        testFunctionalTest true
     }
     buildTypes {
         debug {
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
         release {
             testCoverageEnabled false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
@@ -75,9 +63,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
     ])
 }
 
-//jacoco {
-//    toolVersion = "0.7.6.201602180812"
-//}
+jacoco {
+    toolVersion = "0.7.6.201602180812"//"0.7.5.201505241946"//
+}
 
 configurations {
     javadocDeps2
@@ -91,8 +79,9 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.0.31-beta'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
+
     javadocDeps 'com.android.support:support-annotations:23.4.0'
-    javadocDeps2 'com.android.support:recyclerview-v7:23.4.0'
+    javadocDeps2 'com.android.support:recyclerview-v7:23.4.0'//''com.android.support:widget-v7:23.4.0'
 }
 
 install {
@@ -116,7 +105,7 @@ install {
                 }
             }
             scm {
-                connection GIT_REPO_URL + '.git'
+                connection GIT_REPO_URL+'.git'
                 url GIT_REPO_URL
 
             }
@@ -167,7 +156,7 @@ bintray {
         version {
             publish = true
             released = new Date()
-            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.2.0']
+            attributes = ['gradle-plugin': 'com.android.tools.build:gradle:2.2.0'] //'com.use.less:com.use.less.gradle:gradle-useless-plugin'
         }
     }
 }
