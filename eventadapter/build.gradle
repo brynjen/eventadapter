@@ -11,8 +11,8 @@ apply plugin: 'jacoco'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '1.2.1'
-    PUBLISH_VERSION_CODE = 4
+    PUBLISH_VERSION = '1.2.2'
+    PUBLISH_VERSION_CODE = 5
     PUBLISH_DESCRIPTION = 'Added a fix to make all events happen on main thread'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
@@ -24,8 +24,8 @@ android {
     compileSdkVersion 23
     buildToolsVersion '24.0.2'
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 21
+        minSdkVersion 19
+        targetSdkVersion 23
         versionCode PUBLISH_VERSION_CODE
         versionName PUBLISH_VERSION
         testHandleProfiling true
