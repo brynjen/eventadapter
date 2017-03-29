@@ -11,9 +11,9 @@ apply plugin: 'jacoco'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '1.2.2'
-    PUBLISH_VERSION_CODE = 5
-    PUBLISH_DESCRIPTION = 'Added a fix to make all events happen on main thread'
+    PUBLISH_VERSION = '1.2.3'
+    PUBLISH_VERSION_CODE = 6
+    PUBLISH_DESCRIPTION = 'Set minimum version to api 18'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
 
@@ -21,11 +21,11 @@ group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 18
+        targetSdkVersion 25
         versionCode PUBLISH_VERSION_CODE
         versionName PUBLISH_VERSION
         testHandleProfiling true
@@ -77,11 +77,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'org.mockito:mockito-core:2.0.31-beta'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:recyclerview-v7:25.3.0'
 
-    javadocDeps 'com.android.support:support-annotations:23.4.0'
-    javadocDeps2 'com.android.support:recyclerview-v7:23.4.0'//''com.android.support:widget-v7:23.4.0'
+    javadocDeps 'com.android.support:support-annotations:25.3.0'
+    javadocDeps2 'com.android.support:recyclerview-v7:25.3.0'//''com.android.support:widget-v7:23.4.0'
 }
 
 install {
