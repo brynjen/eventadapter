@@ -11,9 +11,9 @@ apply plugin: 'jacoco'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '1.2.3'
+    PUBLISH_VERSION = '1.2.4'
     PUBLISH_VERSION_CODE = 6
-    PUBLISH_DESCRIPTION = 'Set minimum version to api 18'
+    PUBLISH_DESCRIPTION = 'Fixed minor issue with upload'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
 
