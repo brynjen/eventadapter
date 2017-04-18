@@ -11,8 +11,8 @@ apply plugin: 'jacoco'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '1.2.4'
-    PUBLISH_VERSION_CODE = 6
+    PUBLISH_VERSION = '1.2.5'
+    PUBLISH_VERSION_CODE = 7
     PUBLISH_DESCRIPTION = 'Fixed minor issue with upload'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
@@ -24,7 +24,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 9
         targetSdkVersion 25
         versionCode PUBLISH_VERSION_CODE
         versionName PUBLISH_VERSION

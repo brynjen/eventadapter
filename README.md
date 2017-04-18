@@ -7,7 +7,6 @@
 ================================
 
 An event-based recyclerAdapter using an eventBus to notify it of any changes in the data source, letting the adapter show RecyclerViews nice animations (or you could add your own animations).
-The library is meant to work with Lollipop (api lvl 21) or above, but is planned for a Kitkat later.
 
 EventAdapter:
 
@@ -20,7 +19,7 @@ How to use:
 
 Add to project with gradle
 
-    compile 'no.nordli:eventadapter:1.2.2'
+    compile 'no.nordli:eventadapter:1.2.5'
 
 Note the library is in jCenter, so use that as a repository.
 
@@ -29,7 +28,7 @@ Maven: Not in maven central yet, but it will be soon.
     <dependency>
       <groupId>no.nordli</groupId>
       <artifactId>eventadapter</artifactId>
-      <version>1.2.2</version>
+      <version>1.2.5</version>
       <type>pom</type>
     </dependency>
 
