@@ -19,7 +19,7 @@ How to use:
 
 Add to project with gradle
 
-    compile 'no.nordli:eventadapter:1.2.5'
+    compile 'no.nordli:eventadapter:1.2.6'
 
 Note the library is in jCenter, so use that as a repository.
 
@@ -28,7 +28,7 @@ Maven: Not in maven central yet, but it will be soon.
     <dependency>
       <groupId>no.nordli</groupId>
       <artifactId>eventadapter</artifactId>
-      <version>1.2.5</version>
+      <version>1.2.6</version>
       <type>pom</type>
     </dependency>
 

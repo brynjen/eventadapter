@@ -10,9 +10,9 @@ apply plugin: 'jacoco-android'
 ext {
     PUBLISH_GROUP_ID = 'no.nordli'
     PUBLISH_ARTIFACT_ID = 'eventadapter'
-    PUBLISH_VERSION = '1.2.5'
-    PUBLISH_VERSION_CODE = 7
-    PUBLISH_DESCRIPTION = 'Fixed minor issue with upload'
+    PUBLISH_VERSION = '1.2.6'
+    PUBLISH_VERSION_CODE = 8
+    PUBLISH_DESCRIPTION = 'Updated manifest to ignore backup'
     GIT_REPO_URL = 'https://github.com/brynjen/eventadapter'
 }
 
