@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.novoda:bintray-release:0.4.0'
 //        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
 //        classpath 'org.jacoco:org.jacoco.core:0.7.6.201602180812'
         //classpath 'com.vanniktech:gradle-android-junit-jacoco-plugin:0.5.0'
